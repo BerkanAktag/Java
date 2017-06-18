@@ -1,0 +1,68 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>be.pxl.student</groupId>
+  <artifactId>GuestbookServlet</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  
+  <properties>
+  	<maven.compiler.source>1.8</maven.compiler.source>
+  	<maven.compiler.target>1.8</maven.compiler.target>
+  	<project.build.sourcEncoding>UTF-8</project.build.sourcEncoding>
+  </properties>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>javax</groupId>
+  		<artifactId>javaee-web-api</artifactId>
+  		<version>7.0</version>
+  		<scope>provided</scope>
+  	</dependency>
+  	<dependency>
+    	<groupId>mysql</groupId>
+    	<artifactId>mysql-connector-java</artifactId>
+    	<version>5.1.39</version>
+    </dependency>
+  </dependencies>
+ <build>
+    <finalName>Webcomponents</finalName>
+    
+    <plugins>
+    	<plugin>
+    		<groupId>org.codehaus.cargo</groupId>
+    		<artifactId>cargo-maven2-plugin</artifactId>
+    		<version>1.2.0</version>
+    		<configuration>
+    			<container>
+    				<containerId>tomcat7x</containerId>
+    				<type>remote</type>
+    			</container>
+    			<configuration>
+    				<type>runtime</type>
+    				<properties>
+    					<cargo.hostname>192.168.2.128</cargo.hostname>
+    					<cargo.protocol>http</cargo.protocol>
+    					<cargo.servlet.port>8080</cargo.servlet.port>
+    					<cargo.remote.username>admin</cargo.remote.username>
+    					<cargo.remote.password>admin</cargo.remote.password>
+    				</properties>
+    			</configuration>
+    			<deployer>
+    				<type>remote</type>
+    				<deployables>
+    					<deployable>
+    						<groupId>${project.groupId}</groupId>
+    						<artifactId>${project.artifactId}</artifactId>
+    						<type>war</type>
+    						<properties>
+    							<context>${project.artifactId}</context>
+    						</properties>
+    					</deployable>
+    				</deployables>
+    			</deployer>
+    		</configuration>
+    	</plugin>
+    </plugins>
+  </build>
+  
+</project>
